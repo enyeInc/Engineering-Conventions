@@ -50,12 +50,12 @@ components
 │   │   actions.js // defines all redux actions used for this component
 │   │   actionTypes.js // defines the actionTypes used by the actions
 │   │   constants.js // defines all strings and numbers used in this component
-│   │   index.js // contains all things that we want to export from the component
+│   │   index.js // contains all things that we want to export from the
 │   │   Login.js // contains the react logic
 │   │   reducer.js // defines all the reducers used to update the redux store
-│   │   sagas.js // defines the asynchronous operation perfomed by this component
+│   │   sagas.js // defines the asynchronous operation perfomed by this
 │   │   styles.css // defines styles for the component
-│   └───components // contains sub-components that are only used within this component (i.e buttons, modals ...)
+│   └───components // contains sub-components that are only used within this (i.e buttons, modals ...)
 │       │   Button.js
 │       │   Modal.js
 │       │   ...
@@ -74,7 +74,7 @@ components
     │  ProductsAvailable.js // capitalized and camel-cased
 ```
 
-#### Strings and Numbers
+#### Constans.js
 > Define all strings and numbers used in a component within the `constants.js` file.
 This includes classnames, and url links.
 
@@ -87,6 +87,37 @@ import reducers from './reducers';
 import sagas from './sagas';
 
 export { actions, components, reducers, sagas };
+```
+#### In-line styles and Style.css
+> Do not use in-line styles within any of the react components
+
+* Wrong way:
+```
+// Example.js
+...
+    <div
+        style={{width: '200px', height: '100px'}}
+    />
+...
+```
+> Instead give the element a classname and define its style in the style sheet
+* Correct way:
+```
+// Example.js
+...
+    <div
+        className={'example-element'}
+    />
+...
+```
+```
+// styles.css
+...
+.example-element {
+    width: '200px';
+    height: '100px';
+}
+...
 ```
 
 ### Scope
