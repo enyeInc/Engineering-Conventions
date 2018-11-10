@@ -50,15 +50,16 @@ components
 │   │   actions.js // defines all redux actions used for this component
 │   │   actionTypes.js // defines the actionTypes used by the actions
 │   │   constants.js // defines all strings and numbers used in this component
-│   │   index.js // contains all things that we want to export from the
+│   │   index.js // contains all things that we want to export from the full component
 │   │   reducer.js // defines all the reducers used to update the redux store
 │   │   sagas.js // defines the asynchronous operation perfomed by this
-│   │   styles.css // defines styles for the component
 │   └───components // contains the main component being defined and any other sub-components that are only used within the main component (i.e buttons, modals ...)
 │       │   Login.js // contains the main component react logic
 │       │   Button.js // a sub-component
 │       │   Modal.js // a sub-component
 │       │   ...
+│       │   styles.css // defines styles for the components
+│       │   index.js // used to export the main component. In this case Login.js
 │   
 └───products
     ...
@@ -74,11 +75,11 @@ components
     │  ProductsAvailable.js // capitalized and camel-cased
 ```
 
-#### Constans.js
+#### constans.js
 > Define all strings and numbers used in a component within the `constants.js` file.
 This includes classnames, and url links.
 
-#### Index.js
+#### index.js
 > Each component should have an `index.js` that looks like the following:
 ```
 import actions from './actions';
@@ -88,7 +89,17 @@ import sagas from './sagas';
 
 export { actions, components, reducers, sagas };
 ```
-#### In-line styles and Style.css
+
+#### components/index.js
+> Export the main component and import the css style sheet
+```
+import './styles.scss';
+import ExampleMainComponent from './ExampleMainComponent';
+
+export { ExampleMainComponent };
+```
+
+#### In-line styles and style.css
 > Do not use in-line styles within any of the react components
 
 * Wrong way:
