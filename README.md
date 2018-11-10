@@ -69,10 +69,12 @@ components
 ```
 components
 └───login
-│   │   Login.js // capitalized
+│   └───components
+│       │   Login.js // capitalized
 │   
 └───productsAvailable
-    │  ProductsAvailable.js // capitalized and camel-cased
+│   └───components
+│       │  ProductsAvailable.js // capitalized and camel-cased
 ```
 
 #### constans.js
