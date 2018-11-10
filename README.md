@@ -61,7 +61,7 @@ components
 │       │   styles.css // defines styles for the components
 │       │   index.js // used to export the main component. In this case Login.js
 │   
-└───products
+└───productsAvailable
     ...
 ```
 #### Naming conventions
@@ -69,15 +69,19 @@ components
 ```
 components
 └───login
+│   │   ...
 │   └───components
 │       │   Login.js // capitalized
+│       │   ...
 │   
 └───productsAvailable
+│   │   ...
 │   └───components
 │       │  ProductsAvailable.js // capitalized and camel-cased
+│       │   ...
 ```
 
-#### constans.js
+#### constants.js
 > Define all strings and numbers used in a component within the `constants.js` file.
 This includes classnames, and url links.
 
@@ -95,13 +99,13 @@ export { actions, components, reducers, sagas };
 #### components/index.js
 > Export the main component and import the css style sheet
 ```
-import './styles.scss';
+import './styles.css';
 import ExampleMainComponent from './ExampleMainComponent';
 
 export { ExampleMainComponent };
 ```
 
-#### In-line styles and style.css
+#### in-line styles and style.css
 > Do not use in-line styles within any of the react components
 
 * Wrong way:
