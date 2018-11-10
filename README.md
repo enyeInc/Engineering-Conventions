@@ -106,7 +106,7 @@ export { ExampleMainComponent };
 ```
 
 #### in-line styles and style.css
-> Do not use in-line styles within any of the react components
+> [Do not use in-line styles](https://reactjs.org/docs/faq-styling.html) within any of the react components.
 
 * Wrong way:
 ```
