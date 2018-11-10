@@ -11,7 +11,7 @@
 > If you are working on a feature or a bug:
 1. Pull the most recent master
 2. Create a feature/bug branch with the following pattern `feature/[your name]/[name of feature]`
-3. Ex => feature/Uche/add-new-modal or bug/Uche/fix-broken-navigation
+3. Example => `feature/Uche/add-new-modal` or `bug/Uche/fix-broken-navigation`
 
 ### Git Commit and Push
 > You should commit you changes often and push them up to github. This serves as a backup
@@ -95,9 +95,7 @@ export { actions, components, reducers, sagas };
 ```
 // Example.js
 ...
-    <div
-        style={{width: '200px', height: '100px'}}
-    />
+    <div style={{width: '200px', height: '100px'}} />
 ...
 ```
 > Instead give the element a classname and define its style in the style sheet
@@ -105,9 +103,7 @@ export { actions, components, reducers, sagas };
 ```
 // Example.js
 ...
-    <div
-        className={'example-element'}
-    />
+    <div className={'example-element'} />
 ...
 ```
 ```
