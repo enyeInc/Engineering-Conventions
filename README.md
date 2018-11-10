@@ -22,7 +22,7 @@ team insight into what you are working on before the PR review process.
 > PRs are the extremely important when working on a team. It allows us to have insight
 on what our other team members are working on and exposes us to how they think about
 code. It is crucial that you participate in the review process. Make comments, ask
-questions and suggest improvements so that you and the engineer being review can
+questions and suggest improvements so that you and the engineer being reviewed can
 grow technically and communicatively.
 #### Before PR reviews
 > Before you submit your code for review you should run the following commands:
@@ -97,12 +97,13 @@ export { actions, components, reducers, sagas };
 ```
 
 #### components/index.js
-> Export the main component and import the css style sheet
+> Within the components folder of a component there should also be another `index.js`.
+Here you will import and thus apply the css stylesheet and then export the main component (as shown below).
 ```
 import './styles.css';
-import ExampleMainComponent from './ExampleMainComponent';
+import Login from './Login';
 
-export { ExampleMainComponent };
+export { Login };
 ```
 
 #### in-line styles and style.css
