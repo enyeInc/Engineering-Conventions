@@ -51,13 +51,13 @@ components
 │   │   actionTypes.js // defines the actionTypes used by the actions
 │   │   constants.js // defines all strings and numbers used in this component
 │   │   index.js // contains all things that we want to export from the
-│   │   Login.js // contains the react logic
 │   │   reducer.js // defines all the reducers used to update the redux store
 │   │   sagas.js // defines the asynchronous operation perfomed by this
 │   │   styles.css // defines styles for the component
-│   └───components // contains sub-components that are only used within this (i.e buttons, modals ...)
-│       │   Button.js
-│       │   Modal.js
+│   └───components // contains the main component being defined and any other sub-components that are only used within the main component (i.e buttons, modals ...)
+│       │   Login.js // contains the main component react logic
+│       │   Button.js // a sub-component
+│       │   Modal.js // a sub-component
 │       │   ...
 │   
 └───products
