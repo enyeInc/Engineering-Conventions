@@ -5,7 +5,7 @@
 3. `Recommended 10.0.0+`
 
 > Make sure that ESLint is install on your IDE
-* It makes sure that we are all following a [basic level of coding conventions](https://eslint.org/docs/developer-guide/code-conventions)
+* It makes sure that we are all following a [basic level of Javascript coding conventions](https://eslint.org/docs/developer-guide/code-conventions)
 
 ### Git Flow and Feature branches
 > If you are working on a feature or a bug:
@@ -31,8 +31,9 @@ grow technically and communicatively.
 3. `npm run build`: to make sure that your code will successfully build in production.
 
 ### Commenting
-Comment are a way to help not only you but any other developer that looks at your
-code to better understand the logic behind you code. So comment often and frequently
+> Comments help not only you but any other developer that looks at your
+code better understand the logic behind your code. It is essential that you
+comment often and frequently.
 1. Single comments - used for comments that are only 1 line long
     * starts with `//`
 2. Multiple comments - used for comments that are more than 1 line long
@@ -41,6 +42,21 @@ code to better understand the logic behind you code. So comment often and freque
 > Each and every function and class must be commented. You have to define what the
 function or class does, what are its parameters and what is the expected result
 * When commenting on functions/classes use [JSDoc conventions](http://usejsdoc.org/about-getting-started.html)
+```
+/**
+ * Helper function that is used to make api requests
+ *
+ * @function
+ * @param {String} url - the url being requested
+ * @param {String} method - the request protocol (i.e get, post, put ...)
+ * @param {Object} body - the data to send to the endpoint
+ * @return {Object} the result of the api request
+ */
+function goFetch(url, method, body) {
+    ...
+}
+```
+* [Commenting on Actions, ActionTypes and Sagas](#actions-actiontypes-and-sagas)
 
 ### File Structure
 The file structure for our react components should look exactly as depicted below
@@ -64,7 +80,7 @@ components
 └───productsAvailable
     ...
 ```
-#### Naming conventions
+#### file naming conventions
 > All react components files should be capitalized and camel-cased
 ```
 components
@@ -122,7 +138,7 @@ export { Login };
     <div style={{width: '200px', height: '100px'}} />
 ...
 ```
-> Instead give the element a classname and define its style in the style sheet
+> Instead, give the element a classname and define its style in the style sheet.
 * Correct way:
 ```
 // Example.js
@@ -140,6 +156,52 @@ export { Login };
 ...
 ```
 
+### Actions, ActionTypes and Sagas
+> Using redux can quickly get confusing if you are not careful. That is why
+commenting here plays such a crucial role.
+
+#### Actions
+> When commenting on actions you must specify which actionTypes it is linked to
+```
+// actions.js
+
+/**
+ * Triggers request to fetch data from the server
+ *
+ * @function
+ * @return {Object} The {@link actionTypes.GET_REQUEST_DATA GET_REQUEST_DATA} action.
+ */
+export const getRequestData = () => ({ type: actionTypes.GET_REQUEST_DATA });
+
+```
+#### ActionTypes
+> When commenting on actionsTypes you must specify which action function/creator it is linked to
+```
+// actionsTypes.js
+
+/**
+ * Fired by the {@link actions.getRequestData getRequestData}
+ * action creator.
+ *
+ * @type {String}
+ */
+export const GET_REQUEST_DATA = 'GET_REQUEST_DATA';
+
+```
+#### Sagas
+> When commenting on saga you must specify which action it is linked to.
+```
+// sagas.js
+
+/**
+ * Watches for the {@link actionTypes.GET_REQUEST_DATA GET_REQUEST_DATA} action.
+ * Gets the requested data from the server.
+ *
+ * @return {void}
+ */
+export const GET_REQUEST_DATA = 'GET_REQUEST_DATA';
+
+```
 ### Scope
 > It is very important that you do not to work on other features and bug fixes that
 are outside of the request feature addition or bug fix. Keep the scope of the task
