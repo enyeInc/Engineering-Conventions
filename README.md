@@ -46,14 +46,14 @@ function or class does, what are its parameters and what is the expected result
 The file structure for our react components should look exactly as depicted below
 ```
 components
-└───login // the component folder
+└───login // folder that contains all of the components logic
 │   │   actions.js // defines all redux actions used for this component
 │   │   actionTypes.js // defines the actionTypes used by the actions
 │   │   constants.js // defines all strings and numbers used in this component
 │   │   index.js // contains all things that we want to export from the full component
 │   │   reducer.js // defines all the reducers used to update the redux store
 │   │   sagas.js // defines the asynchronous operation perfomed by this
-│   └───components // contains the main component being defined and any other sub-components that are only used within the main component (i.e buttons, modals ...)
+│   └───components // folder that contains the main component and any sub-components that are only used within the main component (i.e buttons, modals ...)
 │       │   Login.js // contains the main component react logic
 │       │   Button.js // a sub-component
 │       │   Modal.js // a sub-component
@@ -97,8 +97,8 @@ export { actions, components, reducers, sagas };
 ```
 
 #### components/index.js
-> Within the components folder of a component there should also be another `index.js`.
-Here you will import and thus apply the css stylesheet and then export the main component (as shown below).
+> Within the `components` folder of a component there should also be another `index.js`.
+Here you will import and thus apply the css stylesheet and then export the main component (*as shown below*).
 ```
 import './styles.css';
 import Login from './Login';
