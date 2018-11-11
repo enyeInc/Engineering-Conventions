@@ -82,9 +82,15 @@ components
 ```
 
 #### constants.js
-> Define all strings and numbers used in a component within the `constants.js` file.
-This includes classnames, and url links.
-
+> Define all strings and numbers used in a component within the `constants.js` file. This includes classnames, and url links. Add a component to describe what the constant value is for
+```
+/**
+ * Defines the url for the database.
+ *
+ * @constant
+ */
+export const DATA_BASE_URL = 'localhost:3000';
+```
 #### index.js
 > Each component should have an `index.js` that looks like the following:
 ```
