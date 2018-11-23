@@ -125,7 +125,7 @@ Here you will import and thus apply the css stylesheet and then export the main 
 import './styles.css';
 import Login from './Login';
 
-export { Login };
+export default { Login };
 ```
 
 #### in-line styles and style.css
