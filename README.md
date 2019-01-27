@@ -207,3 +207,6 @@ export const GET_REQUEST_DATA = 'GET_REQUEST_DATA';
 are outside of the request feature addition or bug fix. Keep the scope of the task
 as small as possible. It makes the PR process much simpler because we know exactly
 what the code under review is addressing.
+
+### Api Endpoint Conventions
+> When writing endpoints make sure that the payload returned from the endpoint matches [jsend conventions](https://github.com/omniti-labs/jsend).
