@@ -1,47 +1,55 @@
-### Development Environment
-> Make sure you are using [Node 8 or higher](https://nodejs.org/en/download/)
+# Development Environment
+#### Node and NPM
+Make sure you are using [Node 10 or higher](https://nodejs.org/en/download/)
 1. Gives you access to modern Javascript syntax
 2. Provides the latest `npm`
-3. `Recommended 10.0.0+`
+3. `Recommended 12.0.0 LTS`
 
-> Make sure that ESLint is install on your IDE
-* It makes sure that we are all following a [basic level of Javascript coding conventions](https://eslint.org/docs/developer-guide/code-conventions)
+#### Javascript Linting
+Install ESLint in your IDE
+* It assures that you are following a [basic level of Javascript coding conventions](https://eslint.org/docs/developer-guide/code-conventions)
 
-### Git Flow and Feature branches
-> If you are working on a feature or a bug:
+# Git Work Flow
+#### Feature branches
+Leverage [feature branches](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) whenever you want to add a feature or fix a bug.
 1. Pull the most recent master
 2. Create a feature/bug branch with the following pattern `feature/[your name]/[name of feature]`
 3. Example => `feature/Uche/add-new-modal` or `bug/Uche/fix-broken-navigation`
 
-### Git Commit and Push
-> You should commit you changes often and push them up to github. This serves as a backup
-for your code in the event something happens to your code locally. Also, it gives your
-team insight into what you are working on before the PR review process.
+#### Commit and Push
+When working on a feature make sure to commit and push your changes to the remote branch as often as possible.
+* This assures that your commits are small and manageable.
+* Additionally, in the event of system failure or any random that affects your local code, you will have a fairly recent backup of your code in the remote branch.
 
-### Pull Requests(PR)
-> PRs are the extremely important when working on a team. It allows us to have insight
-on what our other team members are working on and exposes us to how they think about
-code. It is crucial that you participate in the review process. Make comments, ask
-questions and suggest improvements so that you and the engineer being reviewed can
-grow technically and communicatively.
-#### Before PR reviews
-> Before you submit your code for review you should run the following commands:
-1. `npm run lint`: to check your code for linting error. There should be zero.
+#### Before Pull Requests
+Before you create a pull request, run the following commands locally:
+1. `npm run lint`: to check your code for linting errors. There should be zero.
 2. `npm run test`: if there are tests, they should all be passing.
 3. `npm run build`: to make sure that your code will successfully build in production.
 
-### Commenting
-> Comments help not only you but any other developer that looks at your
-code better understand the logic behind your code. It is essential that you
-comment often and frequently.
+#### Pull Requests (PR)
+After you have finished working on your feature or bug fix, you should [create a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) from your feature branch to the master branch.
+* This PR allows you to see the difference between the current master code and the feature code that you want to merge into the master.
+* This process is very important because it allows your teammates to review your code in order make sure that it is consistent with coding conventions and make potential suggestions to improve the code quality.
+
+#### Review All Pull Requests
+It is required that each member of your team review and comment on every PR that is created. This makes sure that:
+*  You are keeping your teammates accountable for the quality of the code that they are writing.
+* The code merged into your master meets the highest of standards.
+* You are learning from the code that your teammates are writing.
+
+# More Coding Conventions
+#### Comment Your Code
+Comments help, not only you but, others developer better understand the logic behind your code. It is essential that you comment often and frequently.
 1. Single comments - used for comments that are only 1 line long
     * starts with `//`
 2. Multiple comments - used for comments that are more than 1 line long
     * starts with `/**` and ends with `*/`
+
 #### Function comments
-> Each and every function and class must be commented. You have to define what the
-function or class does, what are its parameters and what is the expected result
-* When commenting on functions/classes use [JSDoc conventions](http://usejsdoc.org/about-getting-started.html)
+Each and every function and class must be commented. You have to define what the function or class does, what are its parameters and what is the expected result
+
+When commenting on functions/classes use [JSDoc conventions](http://usejsdoc.org/about-getting-started.html)
 ```
 /**
  * Helper function that is used to make api requests
@@ -56,32 +64,66 @@ function goFetch(url, method, body) {
     ...
 }
 ```
+
 * [Commenting on Actions, ActionTypes and Sagas](#actions-actiontypes-and-sagas)
 
-### File Structure
+#### Styles
+[Do not use in-line styles](https://reactjs.org/docs/faq-styling.html) within any of the react components. Instead, give the element a `className` and define its style in the style sheet.
+
+* Incorrect:
+```
+// Example.js
+...
+    <div style={{width: '200px', height: '100px'}} />
+...
+```
+
+* Correct:
+```
+// Example.js
+...
+    <div className='example-element' />
+...
+
+
+// styles.css
+...
+.example-element {
+    width: '200px';
+    height: '100px';
+}
+...
+```
+
+#### CSS Class Names
+Class names should be consistent and explicit. By following, the [ABEM](https://css-tricks.com/abem-useful-adaptation-bem/) methodology you will accomplish both.
+
+#### File Structure
 The file structure for our react components should look exactly as depicted below
 ```
 components
-└───login // folder that contains all of the components logic
-│   │   actions.js // defines all redux actions used for this component
-│   │   actionTypes.js // defines the actionTypes used by the actions
-│   │   constants.js // defines all strings and numbers used in this component
-│   │   index.js // contains all things that we want to export from the full component
-│   │   reducer.js // defines all the reducers used to update the redux store
-│   │   sagas.js // defines the asynchronous operation perfomed by this
-│   └───components // folder that contains the main component and any sub-components that are only used within the main component (i.e buttons, modals ...)
-│       │   Login.js // contains the main component react logic
+└───login // component folder
+│   │   actions.js // all component redux actions
+│   │   actionTypes.js // all action actionTypes
+│   │   constants.js // all components strings and numbers
+│   │   index.js // the component exportables
+│   │   reducer.js // all the redux reducers
+│   │   sagas.js // all redux asynchronous operation
+|   |
+│   └───components // the main component and sub-components folder
+│       │   Login.js // the main component
 │       │   Button.js // a sub-component
 │       │   Modal.js // a sub-component
 │       │   ...
-│       │   styles.css // defines styles for the components
-│       │   index.js // used to export the main component. In this case Login.js
+│       │   styles.css // components styles
+│       │   index.js // exports the main component.
 │   
 └───productsAvailable
     ...
 ```
-#### file naming conventions
-> All react components files should be capitalized and camel-cased
+
+#### File Naming Component Files
+All react components files should be start with a capitalized letter and the rest of the name should be camel-cased.
 ```
 components
 └───login
@@ -97,18 +139,22 @@ components
 │       │   ...
 ```
 
-#### constants.js
-> Define all strings and numbers used in a component within the `constants.js` file. This includes classnames, and url links. Add a component to describe what the constant value is for
+#### Constants File
+Define all strings and numbers used in a component within the `constants.js` file. Add a comment that describes the constant.
+
 ```
 /**
  * Defines the url for the database.
  *
  * @constant
  */
-export const DATA_BASE_URL = 'localhost:3000';
+export const TEST_URL = 'localhost:3000';
 ```
-#### index.js
-> Each component should have an `index.js` that looks like the following:
+
+* The only exception is `classNames`. These strings should be defined in the component directly.
+
+#### Index File
+Each component should have an `index.js` that looks like the following:
 ```
 import actions from './actions';
 import components from './components';
@@ -118,9 +164,9 @@ import sagas from './sagas';
 export { actions, components, reducers, sagas };
 ```
 
-#### components/index.js
-> Within the `components` folder of a component there should also be another `index.js`.
-Here you will import and thus apply the css stylesheet and then export the main component (*as shown below*).
+#### Components Folder's Index File
+Within the `components` folder of a component there should also be an `index.js` file.
+Here you will import the css stylesheet and then export the main component (*as shown below*).
 ```
 import './styles.css';
 import Login from './Login';
@@ -128,40 +174,11 @@ import Login from './Login';
 export default { Login };
 ```
 
-#### in-line styles and style.css
-> [Do not use in-line styles](https://reactjs.org/docs/faq-styling.html) within any of the react components.
-
-* Wrong way:
-```
-// Example.js
-...
-    <div style={{width: '200px', height: '100px'}} />
-...
-```
-> Instead, give the element a classname and define its style in the style sheet.
-* Correct way:
-```
-// Example.js
-...
-    <div className={'example-element'} />
-...
-```
-```
-// styles.css
-...
-.example-element {
-    width: '200px';
-    height: '100px';
-}
-...
-```
-
-### Actions, ActionTypes and Sagas
-> Using redux can quickly get confusing if you are not careful. That is why
-commenting here plays such a crucial role.
+# Actions, ActionTypes and Sagas
+Using redux can quickly get confusing if you are not careful. That is why adding comments to redux artifacts plays such a crucial role.
 
 #### Actions
-> When commenting on actions you must specify which actionTypes it is linked to
+When commenting an action, you must specify the linked actionTypes (use *@link*).
 ```
 // actions.js
 
@@ -172,10 +189,10 @@ commenting here plays such a crucial role.
  * @return {Object} The {@link actionTypes.GET_REQUEST_DATA GET_REQUEST_DATA} action.
  */
 export const getRequestData = () => ({ type: actionTypes.GET_REQUEST_DATA });
-
 ```
+
 #### ActionTypes
-> When commenting on actionsTypes you must specify which action function/creator it is linked to
+When commenting on actionsTypes you must specify the linked action creator (use *@link*).
 ```
 // actionsTypes.js
 
@@ -189,7 +206,7 @@ export const GET_REQUEST_DATA = 'GET_REQUEST_DATA';
 
 ```
 #### Sagas
-> When commenting on saga you must specify which action it is linked to.
+When commenting on saga you must specify the linked actionTypes (use *@link*).
 ```
 // sagas.js
 
@@ -202,11 +219,27 @@ export const GET_REQUEST_DATA = 'GET_REQUEST_DATA';
 export const GET_REQUEST_DATA = 'GET_REQUEST_DATA';
 
 ```
-### Scope
-> It is very important that you do not to work on other features and bug fixes that
-are outside of the request feature addition or bug fix. Keep the scope of the task
-as small as possible. It makes the PR process much simpler because we know exactly
-what the code under review is addressing.
 
-### Api Endpoint Conventions
-> When writing endpoints make sure that the payload returned from the endpoint matches [jsend conventions](https://github.com/omniti-labs/jsend).
+# API Endpoint
+When writing endpoints, it is important that there is a predictable standard that the frontend and backend use in order to make communication consistent. Leverage the standards of the [jsend](https://github.com/omniti-labs/jsend) to achieve this consistency.
+
+```
+// GET users request - success
+
+{
+    status : "success",
+    data: {
+        users: [{ id: 1, name: 'test'}, { id: 2, name: 'test2' }],
+    },
+}
+
+// GET users request - error
+
+{
+    status : "error",
+    message: "some error message",
+}
+```
+
+#### HTTP Error Codes
+Use the [http-status-codes](https://www.npmjs.com/package/http-status-codes) library defining status codes and messages.
