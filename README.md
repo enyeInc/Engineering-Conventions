@@ -34,8 +34,8 @@ After you have finished working on your feature or bug fix, you should [create a
 
 #### Pull Request Maximum Changes
 Each PR should contain small and specific code changes. It is difficult for your teammates to review your code when they are many changes all pushed into one Pull Request. Therefore, you must absolutely abide by the following rules:
-* All Pull Requests can contain at most 250 changes.
-* If your PR contains more than 250 changes, you must break down this PR into smaller different PRs.
+* All Pull Requests can contain at most `250 changes`.
+* If your PR contains more than `250 changes`, you must break down this PR into smaller different PRs.
 
 #### Review All Pull Requests
 It is required that each member of your team review and comment on every PR that is created. This makes sure that:
@@ -247,4 +247,4 @@ When writing endpoints, it is important that there is a predictable standard tha
 ```
 
 #### HTTP Error Codes
-Use the [http-status-codes](https://www.npmjs.com/package/http-status-codes) library defining status codes and messages.
+Use the [http-status-codes](https://www.npmjs.com/package/http-status-codes) library when defining status codes and messages.
