@@ -32,6 +32,11 @@ After you have finished working on your feature or bug fix, you should [create a
 * This PR allows you to see the difference between the current master code and the feature code that you want to merge into the master.
 * This process is very important because it allows your teammates to review your code in order make sure that it is consistent with coding conventions and make potential suggestions to improve the code quality.
 
+#### Pull Request Maximum Changes
+Each PR should contain small and specific code changes. It is difficult for your teammates to review your code when they are many changes all pushed into one Pull Request. Therefore, you must absolutely abide by the following rules:
+* All Pull Requests can contain at most 250 changes.
+* If your PR contains more than 250 changes, you must break down this PR into smaller different PRs.
+
 #### Review All Pull Requests
 It is required that each member of your team review and comment on every PR that is created. This makes sure that:
 *  You are keeping your teammates accountable for the quality of the code that they are writing.
