@@ -26,6 +26,9 @@ Before you create a pull request, run the following commands locally:
 1. `npm run lint`: to check your code for linting errors. There should be zero.
 2. `npm run test`: if there are tests, they should all be passing.
 3. `npm run build`: to make sure that your code will successfully build in production.
+1. `npm run lint`: to check your code for linting errors. There should be zero.
+2. `npm run test`: if there are tests, they should all be passing.
+3. `npm run build`: to make sure that your code will successfully build in production.
 
 #### Pull Requests (PR)
 After you have finished working on your feature or bug fix, you should [create a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) from your feature branch to the master branch.
