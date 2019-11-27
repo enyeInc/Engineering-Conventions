@@ -246,5 +246,5 @@ When writing endpoints, it is important that there is a predictable standard tha
 }
 ```
 
-#### HTTP Error Codes
+#### HTTP Status Codes
 Use the [http-status-codes](https://www.npmjs.com/package/http-status-codes) library when defining status codes and messages.
