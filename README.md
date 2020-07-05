@@ -6,8 +6,12 @@ Make sure you are using [Node 10 or higher](https://nodejs.org/en/download/)
 3. `Recommended 12.0.0 LTS`
 
 #### Javascript Linting
-Install ESLint in your IDE
+Install ESLint in your Repo and IDE
 * It assures that you are following a [basic level of Javascript coding conventions](https://eslint.org/docs/developer-guide/code-conventions)
+
+#### Prettier
+Install Prettier in your Repo
+* It assures that you have a [consistent way to format code](https://prettier.io/docs/en/install.html)
 
 # Git Work Flow
 #### Feature branches
@@ -43,7 +47,17 @@ It is required that each member of your team review and comment on every PR that
 * The code merged into your master meets the highest of standards.
 * You are learning from the code that your teammates are writing.
 
+#### Merging Pull Requests
+The scrum master is the only one that can merge a pull request.
+
 # More Coding Conventions
+#### The DRY KISS principle
+It is important to write clean, self teaching code. You can achieve by making sure that your code is both moduluar and simple to understand.
+* DRY - Keep logic short, and divided into reuseable units
+* KISS - Keep code simple and straightforward for other humans to understand. 
+
+[DRY KISS](https://dzone.com/articles/software-design-principles-dry-and-kiss)
+
 #### Comment Your Code
 Comments help, not only you but, others developer better understand the logic behind your code. It is essential that you comment often and frequently.
 1. Single comments - used for comments that are only 1 line long
@@ -51,33 +65,18 @@ Comments help, not only you but, others developer better understand the logic be
 2. Multiple comments - used for comments that are more than 1 line long
     * starts with `/**` and ends with `*/`
 
-#### Function comments
-Each and every function and class must be commented. You have to define what the function or class does, what are its parameters and what is the expected result
+[JSDocs With Typescript](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
 
-When commenting on functions/classes use [JSDoc conventions](http://usejsdoc.org/about-getting-started.html)
-```
-/**
- * Helper function that is used to make api requests
- *
- * @function
- * @param {String} url - the url being requested
- * @param {String} method - the request protocol (i.e get, post, put ...)
- * @param {Object} body - the data to send to the endpoint
- * @return {Object} the result of the api request
- */
-function goFetch(url, method, body) {
-    ...
-}
-```
-
-* [Commenting on Actions, ActionTypes and Sagas](#actions-actiontypes-and-sagas)
+#### Typescript
+Typescript enforces strict variable types and gives engineers insights into potentially breaking type related bugs. It assures that your code is more readable and predicatable. All javascript code should be written in typescript.
+* [Best Practices with Typescript](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
 
 #### Styles
 [Do not use in-line styles](https://reactjs.org/docs/faq-styling.html) within any of the react components. Instead, give the element a `className` and define its style in the style sheet.
 
 * Incorrect:
 ```
-// Example.js
+// Example.ts
 ...
     <div style={{width: '200px', height: '100px'}} />
 ...
@@ -85,13 +84,13 @@ function goFetch(url, method, body) {
 
 * Correct:
 ```
-// Example.js
+// Example.ts
 ...
     <div className='example-element' />
 ...
 
 
-// styles.css
+// styles.scss
 ...
 .example-element {
     width: '200px';
@@ -100,52 +99,53 @@ function goFetch(url, method, body) {
 ...
 ```
 
-#### CSS Class Names
+#### Class Names
 Class names should be consistent and explicit. By following, the [ABEM](https://css-tricks.com/abem-useful-adaptation-bem/) methodology you will accomplish both.
 
 #### File Structure
 The file structure for our react components should look exactly as depicted below
 ```
 components
-└───login // component folder
-│   │   actions.js // all component redux actions
-│   │   actionTypes.js // all action actionTypes
-│   │   constants.js // all components strings and numbers
-│   │   index.js // the component exportables
-│   │   reducer.js // all the redux reducers
-│   │   sagas.js // all redux asynchronous operation
-|   |
-│   └───components // the main component and sub-components folder
-│       │   Login.js // the main component
-│       │   Button.js // a sub-component
-│       │   Modal.js // a sub-component
-│       │   ...
-│       │   styles.css // components styles
-│       │   index.js // exports the main component.
+├── login // component folder
+│   │   ├── constants.ts // all components strings and numbers
+│   │   ├── index.ts // the component exportables
+│   │   └── types.ts // the component type definitions
+│   │
+│   ├── hooks // the custom hooks for this component
+│   │   ├── index.ts // exports the hooks
+│   │   └── useExampleHook.ts // example custom hook
+│   │   
+│   └── components // the main component and sub-components folder
+│       ├── Login.ts // the main component
+│       ├── Button.ts // a sub-component
+│       ├── Modal.ts // a sub-component
+│       ├── ...
+│       ├── styles.scss // components styles
+│       └── index.ts // exports the main component.
 │   
-└───productsAvailable
+└── productsAvailable
     ...
 ```
 
 #### File Naming Component Files
-All react components files should be start with a capitalized letter and the rest of the name should be camel-cased.
+All react components files should start with a capitalized letter and the rest of the name should be camel-cased.
 ```
 components
-└───login
+├── login
 │   │   ...
-│   └───components
-│       │   Login.js // capitalized
+│   └── components
+│       ├── Login.ts // capitalized
 │       │   ...
 │   
-└───productsAvailable
+├── productsAvailable
 │   │   ...
-│   └───components
-│       │  ProductsAvailable.js // capitalized and camel-cased
+│   └── components
+│       ├── ProductsAvailable.ts // capitalized and camel-cased
 │       │   ...
 ```
 
 #### Constants File
-Define all strings and numbers used in a component within the `constants.js` file. Add a comment that describes the constant.
+Define all strings and numbers used in a component within the `constants.ts` file. Add a comment that describes the constant.
 
 ```
 /**
@@ -159,71 +159,41 @@ export const TEST_URL = 'localhost:3000';
 * The only exception is `classNames`. These strings should be defined in the component directly.
 
 #### Index File
-Each component should have an `index.js` that looks like the following:
+Each component should have an `index.ts` that looks at a minimun like the following:
 ```
-import actions from './actions';
 import components from './components';
-import reducers from './reducers';
-import sagas from './sagas';
+import hooks from './hooks';
+import types from './types';
 
-export { actions, components, reducers, sagas };
+export { components, hooks, types };
 ```
 
 #### Components Folder's Index File
-Within the `components` folder of a component there should also be an `index.js` file.
+Within the `components` folder of a component there should also be an `index.ts` file.
 Here you will import the css stylesheet and then export the main component (*as shown below*).
 ```
-import './styles.css';
 import Login from './Login';
+
+import './styles.scss';
 
 export default { Login };
 ```
 
-# Actions, ActionTypes and Sagas
-Using redux can quickly get confusing if you are not careful. That is why adding comments to redux artifacts plays such a crucial role.
+# React
+#### Hooks
+[React Hooks](https://reactjs.org/docs/hooks-intro.html) allow for more reusable and modular react code. Use them in the following cases:
+* All async operations (i.e. API requests, timer operations, interacting with localstorage etc...)
+* Handling component specific state
+* Abstracting complex component logic
+* Handling reuseable stateful logic
 
-#### Actions
-When commenting an action, you must specify the linked actionTypes (use *@link*).
-```
-// actions.js
+#### Functional Components
+Use functional components over class components for the following reasons
+* They are more concise and performant
+* They do not require lifecycle management
+* React hooks only work with functional components
 
-/**
- * Triggers request to fetch data from the server
- *
- * @function
- * @return {Object} The {@link actionTypes.GET_REQUEST_DATA GET_REQUEST_DATA} action.
- */
-export const getRequestData = () => ({ type: actionTypes.GET_REQUEST_DATA });
-```
-
-#### ActionTypes
-When commenting on actionsTypes you must specify the linked action creator (use *@link*).
-```
-// actionsTypes.js
-
-/**
- * Fired by the {@link actions.getRequestData getRequestData}
- * action creator.
- *
- * @type {String}
- */
-export const GET_REQUEST_DATA = 'GET_REQUEST_DATA';
-
-```
-#### Sagas
-When commenting on saga you must specify the linked actionTypes (use *@link*).
-```
-// sagas.js
-
-/**
- * Watches for the {@link actionTypes.GET_REQUEST_DATA GET_REQUEST_DATA} action.
- * Gets the requested data from the server.
- *
- * @return {void}
- */
-export const GET_REQUEST_DATA = 'GET_REQUEST_DATA';
-
-```
+[Why Functional Components](https://habr.com/en/post/443500/)
 
 # API Endpoint
 When writing endpoints, it is important that there is a predictable standard that the frontend and backend use in order to make communication consistent. Leverage the standards of the [jsend](https://github.com/omniti-labs/jsend) to achieve this consistency.
